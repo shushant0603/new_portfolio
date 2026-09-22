@@ -18,48 +18,51 @@ export default function CursorHero() {
   // -----------------------------
   // Load all 64 frames
   // -----------------------------
-  useEffect(() => {
-    let cancelled = false;
+useEffect(() => {
+  let cancelled = false;
 
-    async function loadFrames() {
-      const frames = [];
+  async function loadFrames() {
+    const frames = Array.from({ length: FRAME_COUNT }, (_, i) => {
+      const img = new Image();
+      img.src = `/frames/frame_${String(i).padStart(3, "0")}.webp`;
+      return img;
+    });
 
-      for (let i = 0; i < FRAME_COUNT; i++) {
-        const img = new Image();
-        img.src = `/frames/frame_${String(i).padStart(3, "0")}.webp`;
+    const centerImg = new Image();
+    centerImg.src = "/frames/center.webp";
 
-        try {
-          await img.decode();
-        } catch {
-          // Keep reference even if decode completes on load
-        }
+    // Show UI as soon as the first frame is ready
+    await new Promise((resolve) => {
+      frames[0].onload = resolve;
+      frames[0].onerror = resolve;
+    });
 
-        frames.push(img);
-      }
+    if (cancelled) return;
 
-      let center = null;
-      try {
-        const centerImg = new Image();
-        centerImg.src = "/frames/center.webp";
-        await centerImg.decode();
-        center = centerImg;
-      } catch {
-        center = frames[0];
-      }
+    framesRef.current = frames;
+    centerFrameRef.current = centerImg;
 
-      if (!cancelled) {
-        framesRef.current = frames;
-        centerFrameRef.current = center;
-        setLoaded(true);
-      }
-    }
+    setLoaded(true);
 
-    loadFrames();
+    // Decode remaining frames in background
+    Promise.all(
+      frames.slice(1).map((img) => {
+        if (img.complete) return Promise.resolve();
 
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+        return new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      })
+    );
+  }
+
+  loadFrames();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
 
   // -----------------------------
   // Mouse tracking
