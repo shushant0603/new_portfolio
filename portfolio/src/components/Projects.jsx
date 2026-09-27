@@ -1,5 +1,6 @@
 import { projectsData } from "../data/projects";
 import { FaGithub } from "react-icons/fa";
+import { ExternalLink } from "lucide-react";
 
 export default function Projects() {
   return (
@@ -70,10 +71,23 @@ export default function Projects() {
                       <span className="btn-arrow">↗</span>
                     </a>
                   )}
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-card"
+                    >
+                      <ExternalLink size={15} aria-hidden="true" />
+                      <span>View Live</span>
+                      {/* <span className="btn-arrow">↗</span> */}
+                    </a>
+                  )}
                 </div>
               </div>
             </article>
           ))}
+          
         </div>
       </div>
     </section>

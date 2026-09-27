@@ -16,7 +16,8 @@ export const projectsData = [
       "React",
     ],
     category: "AI & LLM Applications",
-    githubUrl: "https://github.com/shushant0603",
+    githubUrl: "https://github.com/shushant0603/Frontend_Chat_With_Krishna",
+    liveUrl: "https://frontend-chat-with-krishna.vercel.app/",
       image: "/krishnaAI.png",
   },
 
@@ -56,7 +57,8 @@ export const projectsData = [
     ],
     category: "AI & Supply Chain",
     githubUrl:
-      "https://github.com/shushant0603/Smart_Restock_Inventory_Alert_System_Backend",
+     "https://github.com/shushant0603/Smart_Restock_Inventory_System_Frontend",
+      liveUrl: "https://smart-restock-inventory-system-fron.vercel.app/login",
       image: "/inventory.png",
   },
 
@@ -77,6 +79,7 @@ export const projectsData = [
     ],
     category: "Full Stack Web Development",
     githubUrl: "https://github.com/shushant0603/DSA_Tracker_Frontend",
+     liveUrl: "https://dsa-tracker-frontend-6lun.onrender.com/",
       image: "/DSA_Tracker.png",
   },
 
@@ -85,7 +88,9 @@ export const projectsData = [
      subtitle: "AI-Powered English Speaking Practice Platform",
       description: "Built an AI-powered English speaking practice platform where users upload their resume and receive personalized speaking topics based on their experience, skills and projects. Implemented resume text extraction with PDF parsing and OCR, followed by LLM-powered topic generation to create relevant and practical speaking exercises.", 
       technologies: [ "React", "FastAPI", "Python", "LLM", "PDF Processing", "OCR", "REST APIs" ], 
-      category: "AI & Language Learning", githubUrl: "https://github.com/shushant0603", 
+      category: "AI & Language Learning", 
+      githubUrl: "https://github.com/shushant0603/Resume_Practice", 
+      liveUrl: "https://resume-practice-one.vercel.app/",
         image: "/resume.png", },
 ];
 
