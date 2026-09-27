@@ -7,12 +7,12 @@ export const skillsData = [
   {
     category: "FRONTEND",
     description: "Modern, dynamic and responsive user interfaces.",
-    skills: ["HTML", "CSS", "JavaScript", "React"],
+    skills: ["HTML", "CSS", "JavaScript", "React"," Next.js"],
   },
   {
     category: "BACKEND",
     description: "Scalable server architectures and real-time communication protocols.",
-    skills: ["Node.js", "Express.js", "REST APIs", "RTC"],
+    skills: ["Node.js", "Express.js", "REST APIs"," Socket.IO", "WebRTC"," FastAPI"],
   },
   {
     category: "AI / ML",
@@ -22,7 +22,6 @@ export const skillsData = [
       "LLM Applications",
       "AI Agents",
       "LangChain",
-      "LangGraph",
       "RAG",
       "Prompt Engineering",
       "Vector Databases",

@@ -1,4 +1,5 @@
 import { projectsData } from "../data/projects";
+import { FaGithub } from "react-icons/fa";
 
 export default function Projects() {
   return (
@@ -23,6 +24,13 @@ export default function Projects() {
                   className="project-visual-bg"
                   style={{ background: project.gradient }}
                 >
+                  {project.image && (
+                    <img
+                      src={project.image}
+                      alt={`${project.title} preview`}
+                      className="project-image"
+                    />
+                  )}
                   <div className="project-watermark-number">{project.id}</div>
                   <div className="project-visual-overlay">
                     <span className="project-category-badge">{project.category}</span>
@@ -34,7 +42,6 @@ export default function Projects() {
               <div className="project-details">
                 <div className="project-meta-row">
                   <span className="project-serial">PROJECT {project.id}</span>
-                  <span className="project-status">COMPLETED</span>
                 </div>
 
                 <h3 className="project-title">{project.title}</h3>
@@ -58,6 +65,7 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       className="btn btn-card"
                     >
+                      <FaGithub aria-hidden="true" />
                       <span>View on GitHub</span>
                       <span className="btn-arrow">↗</span>
                     </a>

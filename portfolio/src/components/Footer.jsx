@@ -1,3 +1,5 @@
+import { FaGithub } from "react-icons/fa";
+
 export default function Footer() {
   const links = [
     { label: "GitHub", href: "https://github.com/shushant0603" },
@@ -26,6 +28,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-sm text-neutral-400 hover:text-white transition-colors"
             >
+              {link.label === "GitHub" && <FaGithub aria-hidden="true" />}
               {link.label}
             </a>
           ))}

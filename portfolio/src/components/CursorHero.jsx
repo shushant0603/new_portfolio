@@ -208,12 +208,12 @@ useEffect(() => {
 
         <div className="hero-buttons">
           <a
-            href="#contact"
-            onClick={scrollToContact}
+            href="/resume.pdf"
+            download="Shushant_Resume.pdf"
             className="btn btn-primary"
-            title="Resume available upon request"
+            title="Download resume"
           >
-            Resume ↗
+            Resume ↓
           </a>
           <a
             href="#contact"

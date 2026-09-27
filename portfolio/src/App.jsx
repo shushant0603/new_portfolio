@@ -3,6 +3,7 @@ import CursorHero from "./components/CursorHero";
 import About from "./components/About";
 import Skills from "./components/Skills";
 import CodingJourney from "./components/CodingJourney";
+import CurrentWork from "./components/CurrentWork";
 import Projects from "./components/Projects";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
@@ -19,6 +20,7 @@ export default function App() {
         <Skills />
         <CodingJourney />
         <Projects />
+        <CurrentWork />
         <Education />
         <Contact />
       </main>

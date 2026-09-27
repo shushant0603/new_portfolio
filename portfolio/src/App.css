@@ -578,6 +578,9 @@
 }
 
 .skill-category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   font-family: var(--font-mono, monospace);
   font-size: 12px;
   font-weight: 700;
@@ -611,6 +614,9 @@
 }
 
 .skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   font-size: 13px;
   padding: 6px 14px;
   background: rgba(255, 255, 255, 0.05);
@@ -624,6 +630,11 @@
   background: #ff1e35;
   border-color: #ff1e35;
   color: #ffffff;
+}
+
+.skill-pill svg,
+.skill-category-badge svg {
+  flex: 0 0 auto;
 }
 
 /* -----------------------------
@@ -768,6 +779,117 @@
 /* -----------------------------
    6. PROJECTS SECTION
    ----------------------------- */
+.current-work-panel {
+  max-width: 860px;
+  margin: 34px auto 0;
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 30, 53, 0.25);
+  border-radius: 20px;
+}
+
+.current-work-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.current-work-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  color: #ff1e35;
+  background: rgba(255, 30, 53, 0.12);
+  border-radius: 10px;
+}
+
+.current-work-heading div,
+.current-work-details {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.current-work-heading strong,
+.current-work-details strong {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.current-work-heading span,
+.current-work-details span {
+  color: #8d8d8d;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.current-work-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding-top: 18px;
+}
+
+.current-work-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+  cursor: pointer;
+  padding: 13px;
+  color: inherit;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.current-work-item:hover {
+  background: rgba(255, 30, 53, 0.08);
+  border-color: rgba(255, 30, 53, 0.45);
+  transform: translateY(-2px);
+}
+
+.current-work-number {
+  color: #ff1e35;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+}
+
+.current-work-details {
+  min-width: 0;
+  flex: 1;
+}
+
+.current-work-details strong,
+.current-work-details span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.current-work-code-icon {
+  color: #888888;
+}
+
+.current-work-github {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 7px;
+}
+
+.current-work-arrow {
+  color: #ff1e35;
+}
+
 .projects-list {
   display: flex;
   flex-direction: column;
@@ -807,6 +929,22 @@
   align-items: flex-end;
   padding: 24px;
   transition: transform 0.4s ease;
+}
+
+.project-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.82;
+  mix-blend-mode: screen;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.04);
+  opacity: 0.95;
 }
 
 .project-card:hover .project-visual-bg {
@@ -1273,6 +1411,12 @@
   background-color: #050505;
 }
 
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
 
 /* -----------------------------
    8. RESPONSIVENESS
@@ -1351,6 +1495,10 @@
   }
 
   .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .current-work-list {
     grid-template-columns: 1fr;
   }
 }
