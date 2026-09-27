@@ -5,7 +5,6 @@ const FRAME_COUNT = 64;
 export default function CursorHero() {
   const canvasRef = useRef(null);
   const framesRef = useRef([]);
-  const centerFrameRef = useRef(null);
 
   const mouseRef = useRef({
     x: typeof window !== "undefined" ? window.innerWidth / 2 : 500,
@@ -18,51 +17,44 @@ export default function CursorHero() {
   // -----------------------------
   // Load all 64 frames
   // -----------------------------
-useEffect(() => {
-  let cancelled = false;
+  useEffect(() => {
+    let cancelled = false;
 
-  async function loadFrames() {
-    const frames = Array.from({ length: FRAME_COUNT }, (_, i) => {
-      const img = new Image();
-      img.src = `/frames/frame_${String(i).padStart(3, "0")}.webp`;
-      return img;
-    });
+    async function loadFrames() {
+      const frames = Array.from({ length: FRAME_COUNT }, (_, i) => {
+        const img = new Image();
+        img.src = `/frames/frame_${String(i).padStart(3, "0")}.webp`;
+        return img;
+      });
 
-    const centerImg = new Image();
-    centerImg.src = "/frames/center.webp";
+      await new Promise((resolve) => {
+        frames[0].onload = resolve;
+        frames[0].onerror = resolve;
+      });
 
-    // Show UI as soon as the first frame is ready
-    await new Promise((resolve) => {
-      frames[0].onload = resolve;
-      frames[0].onerror = resolve;
-    });
+      if (cancelled) return;
 
-    if (cancelled) return;
+      framesRef.current = frames;
+      setLoaded(true);
 
-    framesRef.current = frames;
-    centerFrameRef.current = centerImg;
+      Promise.all(
+        frames.slice(1).map((img) => {
+          if (img.complete) return Promise.resolve();
 
-    setLoaded(true);
+          return new Promise((resolve) => {
+            img.onload = resolve;
+            img.onerror = resolve;
+          });
+        })
+      );
+    }
 
-    // Decode remaining frames in background
-    Promise.all(
-      frames.slice(1).map((img) => {
-        if (img.complete) return Promise.resolve();
+    loadFrames();
 
-        return new Promise((resolve) => {
-          img.onload = resolve;
-          img.onerror = resolve;
-        });
-      })
-    );
-  }
-
-  loadFrames();
-
-  return () => {
-    cancelled = true;
-  };
-}, []);
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // -----------------------------
   // Mouse tracking
@@ -208,7 +200,7 @@ useEffect(() => {
 
         <div className="hero-buttons">
           <a
-            href="/resume.pdf"
+            href="/Shushant_Resume.pdf"
             download="Shushant_Resume.pdf"
             className="btn btn-primary"
             title="Download resume"
@@ -225,7 +217,6 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* Futuristic Orbital HUD Graphic Overlay (Layering: Canvas -> Orbital HUD -> Content) */}
       <div className="hero-orbital-container">
         <img
           src="/hero-orbital-ui.png"
